@@ -47,8 +47,8 @@ public class WebhookServiceImpl implements WebhookService {
         JSONObject root = new JSONObject(user);
         web.setBody(root.getString("body"));
         web.setPara(root.getString("to"));
-        bot(web);
-        webrepository.Salvar(web);
+        Pessoal(web);
+       // webrepository.Salvar(web);
         return web;
     }
 
@@ -169,13 +169,11 @@ public class WebhookServiceImpl implements WebhookService {
                          "62992500660", web.getPara(), web.getPara());
 
             } else if (web.getBody().equals("Trabalho")) {
-                zapServicel.EnviarSMS("Assim que possivel retorno! \n" +
-                        "Vamos recomecar!", web.getPara(), web.getPara());
-                lista = Default();
-                lista.setNumber(web.getPara());
+                zapServicel.EnviarSMS("Assim que possivel retorno!", web.getPara(), web.getPara());
             } else {
                 lista = Default();
                 lista.setNumber(web.getPara());
+                zapServicel.EnviarList(lista);
             }
 
         } catch (Exception e) {
